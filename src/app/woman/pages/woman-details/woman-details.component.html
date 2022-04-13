@@ -1,0 +1,43 @@
+<p>woman-details works!</p>
+
+{{ woman$ | async | json }}
+
+<mat-card class="example-card" *ngIf="woman$ | async; let woman">
+  <mat-card-header>
+    <mat-card-title>{{ woman.firstName | titlecase }}</mat-card-title>
+    <mat-card-subtitle>{{ woman.lastName | lowercase }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <ul>
+      <li><b>photo :</b> {{ woman.photo }}</li>
+      <li><b>dob :</b> {{ woman.dateOfBirth }}</li>
+      <li><b>situation :</b> {{ woman.situation }}</li>
+      <li>
+        <b>Boyfriend :</b>
+        <mat-card class="example-card" *ngIf="woman$ | async; let boyfriend">
+          <mat-card-header>
+            <mat-card-title>{{
+              boyfriend.boyfriend.firstName | titlecase
+            }}</mat-card-title>
+            <mat-card-subtitle>{{
+              boyfriend.boyfriend.lastName | lowercase
+            }}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </li>
+
+      <li><b>sport :</b> {{ woman.sport }}</li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="deleteWoman(woman.id)">
+      Delete
+    </button>
+    <button mat-raised-button color="primary" (click)="updateWoman(woman)">
+      Update
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<button mat-raised-button color="warn" (click)="goBack()">Go Back</button>

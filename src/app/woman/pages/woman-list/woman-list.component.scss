@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+  &:hover {
+    background-color: lightgray;
+  }
+}

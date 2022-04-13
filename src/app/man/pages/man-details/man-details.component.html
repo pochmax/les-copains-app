@@ -1,0 +1,43 @@
+<p>man-details works!</p>
+
+{{ man$ | async | json }}
+
+<mat-card class="example-card" *ngIf="man$ | async; let man">
+  <mat-card-header>
+    <mat-card-title>{{ man.firstName | titlecase }}</mat-card-title>
+    <mat-card-subtitle>{{ man.lastName | lowercase }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <ul>
+      <li><b>photo :</b> {{ man.photo }}</li>
+      <li><b>dob :</b> {{ man.dateOfBirth }}</li>
+      <li><b>situation :</b> {{ man.situation }}</li>
+      <li>
+        <b>girlfriend :</b>
+        <mat-card class="example-card" *ngIf="man$ | async; let girlfriend">
+          <mat-card-header>
+            <mat-card-title>{{
+              girlfriend.girlfriend.firstName | titlecase
+            }}</mat-card-title>
+            <mat-card-subtitle>{{
+              girlfriend.girlfriend.lastName | lowercase
+            }}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </li>
+      <li><b>sport :</b> {{ man.sport.name }}</li>
+      <!-- <li *ngFor="let sport of man$">{{ sport.name | async | json }}</li> -->
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="deleteMan(man.id)">
+      Delete
+    </button>
+    <button mat-raised-button color="primary" (click)="updateMan(man)">
+      Update
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<button mat-raised-button color="warn" (click)="goBack()">Go Back</button>
