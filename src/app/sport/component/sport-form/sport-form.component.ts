@@ -11,8 +11,7 @@ import { Schema, Types } from 'mongoose';
 import { StringifyOptions } from 'querystring';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-// import { Man } from 'src/app/core/models/man';
-// import { Man } from 'src/app/core/models/man';
+import { map } from 'rxjs';
 
 export interface Man {
   id: Types.ObjectId;
@@ -43,29 +42,6 @@ export class SportFormComponent implements OnInit {
     this.dialogRef.close(id);
   }
 
-  onSubmit(sport: Sport) {
-    if (this.sportForm.valid) {
-      if (this.data.isUpdateMode) {
-        // update
-        this._sportService.update(sport).subscribe((response) => {
-          this.closeForm(sport.id);
-          this._snackBar.open(response, '', {
-            duration: 2000,
-            panelClass: ['mat-toolbar', 'mat-accent'],
-          });
-        });
-      } else {
-        // create
-        this._sportService.create(sport).subscribe((response) => {
-          this.closeForm(sport.id);
-          this._snackBar.open(response, '', {
-            duration: 2000,
-            panelClass: ['mat-toolbar', 'mat-accent'],
-          });
-        });
-      }
-    }
-  }
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   men: Man[] = [];
@@ -77,10 +53,9 @@ export class SportFormComponent implements OnInit {
     if (value) {
       this.men.push({ id: value });
     }
-
-    console.table([...this.men]);
     // Clear the input value
-    // event.chipInput!.clear();
+    event.chipInput!.clear();
+    console.log(this.men);
   }
 
   remove(man: Man): void {
@@ -122,5 +97,29 @@ export class SportFormComponent implements OnInit {
         // Validators.required,
       ],
     });
+  }
+  onSubmit(sport: Sport) {
+    if (this.sportForm.valid) {
+      if (this.data.isUpdateMode) {
+        // update
+        this._sportService.update(sport).subscribe((response) => {
+          this.closeForm(sport.id);
+          this._snackBar.open(response, '', {
+            duration: 2000,
+            panelClass: ['mat-toolbar', 'mat-accent'],
+          });
+        });
+      } else {
+        // create
+        this._sportService.create(sport).subscribe((response) => {
+          console.log(this.men);
+          this.closeForm(sport.id);
+          this._snackBar.open(response, '', {
+            duration: 2000,
+            panelClass: ['mat-toolbar', 'mat-accent'],
+          });
+        });
+      }
+    }
   }
 }

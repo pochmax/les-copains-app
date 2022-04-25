@@ -61,9 +61,7 @@ export class ManFormComponent implements OnInit {
         // Validators.required,
       ],
       girlfriend: [
-        this.data.isUpdateMode
-          ? this.data.manToUpdate.girlfriend
-          : Types.ObjectId,
+        this.data.isUpdateMode ? this.data.manToUpdate.girlfriend : '',
         // Validators.required,
       ],
       photo: [

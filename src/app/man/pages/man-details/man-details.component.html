@@ -13,20 +13,36 @@
       <li><b>photo :</b> {{ man.photo }}</li>
       <li><b>dob :</b> {{ man.dateOfBirth }}</li>
       <li><b>situation :</b> {{ man.situation }}</li>
-      <li>
-        <b>girlfriend :</b>
-        <mat-card class="example-card" *ngIf="man$ | async; let girlfriend">
-          <mat-card-header>
-            <mat-card-title>{{
-              girlfriend.girlfriend.firstName | titlecase
-            }}</mat-card-title>
-            <mat-card-subtitle>{{
-              girlfriend.girlfriend.lastName | lowercase
-            }}</mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
-      </li>
-      <li><b>sport :</b> {{ man.sport.name }}</li>
+      <ng-template [ngIf]="man.girlfriend != null">
+        <li>
+          <b>girlfriend :</b>
+          <mat-card class="example-card" *ngIf="man$ | async; let girlfriend">
+            <mat-card-header>
+              <mat-card-title>{{
+                girlfriend.girlfriend.firstName | titlecase
+              }}</mat-card-title>
+              <mat-card-subtitle>{{
+                girlfriend.girlfriend.lastName | lowercase
+              }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </li>
+      </ng-template>
+      <ng-template [ngIf]="man.sport != null">
+        <li>
+          <b>sport :</b>
+          <mat-card class="example-card" *ngIf="man$ | async; let sport">
+            <mat-card-header>
+              <mat-card-title>{{
+                sport.sport.name | titlecase
+              }}</mat-card-title>
+              <mat-card-subtitle>{{
+                sport.sport.desc | lowercase
+              }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </li>
+      </ng-template>
       <!-- <li *ngFor="let sport of man$">{{ sport.name | async | json }}</li> -->
     </ul>
   </mat-card-content>
