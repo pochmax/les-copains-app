@@ -27,7 +27,7 @@
       <mat-label>List of men</mat-label>
       <mat-chip-list #chipList aria-label="Men selection">
         <mat-chip *ngFor="let man of men" (removed)="remove(man)">
-          {{ man.id }}
+          {{ man._id }}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>

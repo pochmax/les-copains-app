@@ -14,7 +14,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { map } from 'rxjs';
 
 export interface Man {
-  id: Types.ObjectId;
+  _id: Types.ObjectId;
 }
 
 @Component({
@@ -51,7 +51,7 @@ export class SportFormComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.men.push({ id: value });
+      this.men.push({ _id: value });
     }
     // Clear the input value
     event.chipInput!.clear();
