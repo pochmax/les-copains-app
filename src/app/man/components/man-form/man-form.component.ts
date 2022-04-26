@@ -9,6 +9,17 @@ import { ManFormData } from 'src/app/core/models/manFormData';
 import { ManService } from '../../services/man.service';
 import { Types } from 'mongoose';
 import ObjectID from 'bson-objectid';
+import { StringifyOptions } from 'querystring';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+
+export interface Sport {
+  _id: Types.ObjectId;
+}
+
+export interface Woman {
+  _id: Types.ObjectId;
+}
 
 @Component({
   selector: 'app-man-form',
@@ -20,8 +31,8 @@ export class ManFormComponent implements OnInit {
   manForm: FormGroup;
 
   situations: string[] = ['En couple', 'Célibataire'];
-  girlfriends: string[] = ['624ecbfe7598c2e41b1ba534'];
-  sports: string[] = ['624db50cee3b0ced35aaca4d'];
+  // girlfriends: string[] = ['624ecbfe7598c2e41b1ba534'];
+
   constructor(
     private _formBuilder: FormBuilder,
     private _manService: ManService,
@@ -34,6 +45,36 @@ export class ManFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormBuilder();
+  }
+
+  closeForm(id?: string) {
+    this.manForm.reset();
+    this.dialogRef.close(id);
+  }
+
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  sports: Sport[] = [];
+  // woman: Woman[] = [];
+
+  add(event: MatChipInputEvent): void {
+    const value = event.value;
+
+    // Add our fruit
+    if (value) {
+      this.sports.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+    console.log(this.sports);
+  }
+
+  remove(sport: Sport): void {
+    const index = this.sports.indexOf(sport);
+
+    if (index >= 0) {
+      this.sports.splice(index, 1);
+    }
   }
 
   initFormBuilder() {
@@ -69,15 +110,10 @@ export class ManFormComponent implements OnInit {
         // Validators.required,
       ],
       sport: [
-        this.data.isUpdateMode ? this.data.manToUpdate.sport : '',
+        this.data.isUpdateMode ? this.sports : this.sports,
         // Validators.required,
       ],
     });
-  }
-
-  closeForm(id?: string) {
-    this.manForm.reset();
-    this.dialogRef.close(id);
   }
 
   onSubmit(man: Man) {

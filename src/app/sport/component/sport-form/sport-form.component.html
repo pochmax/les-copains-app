@@ -42,9 +42,28 @@
       </mat-chip-list>
     </mat-form-field>
     <br />
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>women</mat-label>
       <input matInput formControlName="women" />
+    </mat-form-field> -->
+
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>List of Women</mat-label>
+      <mat-chip-list #chipList aria-label="Men selection">
+        <mat-chip *ngFor="let woman of women" (removed)="removeWoman(woman)">
+          {{ woman._id }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New woman..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="addWoman($event)"
+        />
+      </mat-chip-list>
     </mat-form-field>
     <br />
   </mat-dialog-content>

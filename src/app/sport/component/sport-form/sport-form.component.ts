@@ -17,6 +17,10 @@ export interface Man {
   _id: Types.ObjectId;
 }
 
+export interface Woman {
+  _id: Types.ObjectId;
+}
+
 @Component({
   selector: 'app-sport-form',
   templateUrl: './sport-form.component.html',
@@ -45,16 +49,17 @@ export class SportFormComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   men: Man[] = [];
+  women: Woman[] = [];
 
-  add(event: MatChipInputEvent): void {
-    const value = event.value;
+  add(eventman: MatChipInputEvent): void {
+    const value = eventman.value;
 
     // Add our fruit
     if (value) {
-      this.men.push({ _id: value });
+      this.men.push(value);
     }
     // Clear the input value
-    event.chipInput!.clear();
+    eventman.chipInput!.clear();
     console.log(this.men);
   }
 
@@ -63,6 +68,25 @@ export class SportFormComponent implements OnInit {
 
     if (index >= 0) {
       this.men.splice(index, 1);
+    }
+  }
+
+  addWoman(eventwoman: MatChipInputEvent): void {
+    const value = eventwoman.value;
+
+    // Add our fruit
+    if (value) {
+      this.women.push(value);
+    }
+    // Clear the input value
+    eventwoman.chipInput!.clear();
+  }
+
+  removeWoman(woman: Woman): void {
+    const index = this.women.indexOf(woman);
+
+    if (index >= 0) {
+      this.women.splice(index, 1);
     }
   }
 
@@ -87,13 +111,11 @@ export class SportFormComponent implements OnInit {
         // Validators.required,
       ],
       men: [
-        this.data.isUpdateMode ? this.data.sportToUpdate.men : [...this.men],
+        this.data.isUpdateMode ? this.data.sportToUpdate.men : this.men,
         // Validators.required,
       ],
       women: [
-        this.data.isUpdateMode
-          ? this.data.sportToUpdate.women
-          : new Types.ObjectId(),
+        this.data.isUpdateMode ? this.data.sportToUpdate.women : this.women,
         // Validators.required,
       ],
     });
