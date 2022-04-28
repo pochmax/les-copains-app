@@ -19,7 +19,7 @@ export class ManService {
     return this._http.get<Man[]>(`${environment.apiBaseUrl}${this.manPath}`);
   }
 
-  getById(id: string): Observable<Man> {
+  getById(id: ObjectID): Observable<Man> {
     return this._http.get<Man>(
       `${environment.apiBaseUrl}${this.manPath}/${id}`
     );
@@ -39,7 +39,7 @@ export class ManService {
     );
   }
 
-  delete(id: string): Observable<string> {
+  delete(id: ObjectID): Observable<string> {
     return this._http.delete<string>(
       `${environment.apiBaseUrl}${this.manPath}/${id}`
     );

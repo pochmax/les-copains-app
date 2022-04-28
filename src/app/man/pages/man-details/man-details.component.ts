@@ -33,7 +33,7 @@ export class ManDetailsComponent implements OnInit {
     });
   }
 
-  fetchData(id: string) {
+  fetchData(id: ObjectID) {
     this.man$ = this._manService.getById(id);
   }
 
@@ -54,7 +54,7 @@ export class ManDetailsComponent implements OnInit {
     });
   }
 
-  deleteMan(id: string) {
+  deleteMan(id: ObjectID) {
     this._manService.delete(id).subscribe((response) => {
       this._snackBar.open(response, '', {
         duration: 2000,

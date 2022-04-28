@@ -47,7 +47,7 @@ export class ManFormComponent implements OnInit {
     this.initFormBuilder();
   }
 
-  closeForm(id?: string) {
+  closeForm(id?: ObjectID) {
     this.manForm.reset();
     this.dialogRef.close(id);
   }

@@ -4,7 +4,7 @@ import { Sport } from './sport';
 import { Woman } from './woman';
 
 export interface Man {
-  id: string;
+  id: ObjectID;
   firstName: string;
   lastName: string;
   situation: string;
