@@ -55,6 +55,7 @@ export class ManFormComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   sports: Sport[] = [];
+
   // woman: Woman[] = [];
 
   add(event: MatChipInputEvent): void {
@@ -102,7 +103,9 @@ export class ManFormComponent implements OnInit {
         // Validators.required,
       ],
       girlfriend: [
-        this.data.isUpdateMode ? this.data.manToUpdate.girlfriend : '',
+        this.data.isUpdateMode
+          ? this.data.manToUpdate.girlfriend
+          : new Types.ObjectId(),
         // Validators.required,
       ],
       photo: [
@@ -129,6 +132,7 @@ export class ManFormComponent implements OnInit {
         });
       } else {
         // create
+
         this._manService.create(man).subscribe((response) => {
           this.closeForm(man.id);
           this._snackBar.open(response, '', {

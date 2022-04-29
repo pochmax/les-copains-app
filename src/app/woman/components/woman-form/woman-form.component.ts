@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { isEmpty, Observable } from 'rxjs';
 import { Woman } from 'src/app/core/models/woman';
 import { WomanFormData } from 'src/app/core/models/womanFormData';
 import { WomanService } from '../../services/woman.service';
@@ -91,12 +91,14 @@ export class WomanFormComponent implements OnInit {
         this.data.isUpdateMode ? this.data.womanToUpdate.dateOfBirth : '',
         // Validators.required,
       ],
+
       boyfriend: [
         this.data.isUpdateMode
           ? this.data.womanToUpdate.boyfriend
           : new Types.ObjectId(),
         // Validators.required,
       ],
+
       photo: [
         this.data.isUpdateMode ? this.data.womanToUpdate.photo : '',
         // Validators.required,

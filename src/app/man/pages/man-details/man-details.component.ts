@@ -10,6 +10,7 @@ import { ManService } from '../../services/man.service';
 import { Location } from '@angular/common';
 import { Types } from 'mongoose';
 import ObjectID from 'bson-objectid';
+import { Sport } from 'src/app/core/models/sport';
 @Component({
   selector: 'app-man-details',
   templateUrl: './man-details.component.html',
@@ -17,7 +18,8 @@ import ObjectID from 'bson-objectid';
 })
 export class ManDetailsComponent implements OnInit {
   man$: Observable<Man>;
-
+  sports$ = [];
+  displayedColumns: string[] = ['name', 'desc'];
   constructor(
     private _manService: ManService,
     private _activatedRoute: ActivatedRoute,
@@ -31,6 +33,7 @@ export class ManDetailsComponent implements OnInit {
     this._activatedRoute.params.subscribe((params) => {
       this.fetchData(params['id']);
     });
+    console.log(this.sports$);
   }
 
   fetchData(id: ObjectID) {

@@ -111,11 +111,15 @@ export class SportFormComponent implements OnInit {
         // Validators.required,
       ],
       men: [
-        this.data.isUpdateMode ? this.data.sportToUpdate.men : this.men,
+        this.data.isUpdateMode
+          ? this.data.sportToUpdate.men
+          : new Types.ObjectId(),
         // Validators.required,
       ],
       women: [
-        this.data.isUpdateMode ? this.data.sportToUpdate.women : this.women,
+        this.data.isUpdateMode
+          ? this.data.sportToUpdate.women
+          : new Types.ObjectId(),
         // Validators.required,
       ],
     });
