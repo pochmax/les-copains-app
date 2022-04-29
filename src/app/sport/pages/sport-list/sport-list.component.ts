@@ -14,7 +14,7 @@ import { SportFormComponent } from '../../component/sport-form/sport-form.compon
 })
 export class SportListComponent implements OnInit {
   sports$: Observable<Sport[]>;
-  displayedColumns: string[] = ['name', 'desc'];
+  displayedColumns: string[] = ['name', 'desc', 'id'];
 
   constructor(
     private _sportService: SportService,

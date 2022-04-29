@@ -1,7 +1,3 @@
-<p>man-details works!</p>
-
-{{ man$ | async | json }}
-
 <mat-card class="example-card" *ngIf="man$ | async; let man">
   <mat-card-header>
     <mat-card-title>{{ man.firstName | titlecase }}</mat-card-title>
@@ -10,17 +6,17 @@
 
   <mat-card-content>
     <ul>
-      <li><b>photo :</b> {{ man.photo }}</li>
-      <li><b>dob :</b> {{ man.dateOfBirth }}</li>
+      <li><b>id :</b> {{ man.id }}</li>
+      <li><b>Date de Naissance :</b> {{ man.dateOfBirth }}</li>
       <li><b>situation :</b> {{ man.situation }}</li>
       <ng-template [ngIf]="man.girlfriend != null">
         <li>
           <b>girlfriend :</b>
           <mat-card class="example-card" *ngIf="man$ | async; let girlfriend">
             <mat-card-header>
-              <mat-card-title>{{
-                girlfriend.girlfriend.firstName | titlecase
-              }}</mat-card-title>
+              <mat-card-title
+                >{{ girlfriend.girlfriend.firstName | titlecase }}
+              </mat-card-title>
               <mat-card-subtitle>{{
                 girlfriend.girlfriend.lastName | lowercase
               }}</mat-card-subtitle>
@@ -28,45 +24,52 @@
           </mat-card>
         </li>
       </ng-template>
-      <ng-template [ngIf]="man.sport != null">
-        <li>
-          <b>sport :</b>
-          <!-- <mat-card class="example-card" *ngIf="man$ | async; let sport">
-            <mat-card-header>
-              <mat-card-title>{{
-                sport.sport.name | titlecase
-              }}</mat-card-title>
-              <mat-card-subtitle>{{
-                sport.sport.desc | lowercase
-              }}</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card> -->
-        </li>
-        <table mat-table [dataSource]="sports$" class="mat-elevation-z8">
-          <!-- Name Column -->
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.id }}
-            </td>
-          </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>name</th>
-            <td mat-cell *matCellDef="let element">{{ element.sport.name }}</td>
-          </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="desc">
-            <th mat-header-cell *matHeaderCellDef>desc</th>
-            <td mat-cell *matCellDef="let element">{{ element.sport.desc }}</td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+      <!-- <ng-template [ngIf]="man.sport != null"> -->
+      <br />
+      <ng-template [ngIf]="man.sport[0] != null">
+        <b>Sport n°1</b>
+        <ul>
+          <li>
+            <b>{{ man.sport[0].name }}</b>
+          </li>
+        </ul>
       </ng-template>
-      <ng-template ngFor="sport of man.sport"> </ng-template>
+      <br />
+      <ng-template [ngIf]="man.sport[1] != null">
+        <b>Sport n°2</b>
+        <ul>
+          <li>
+            <b>{{ man.sport[1].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
+      <br />
+      <ng-template [ngIf]="man.sport[2] != null">
+        <b>Sport n°3</b>
+        <ul>
+          <li>
+            <b>{{ man.sport[2].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
+      <br />
+      <ng-template [ngIf]="man.sport[3] != null">
+        <b>Sport n°4</b>
+        <ul>
+          <li>
+            <b>{{ man.sport[3].name }}</b>
+          </li>
+        </ul>
+        <br />
+      </ng-template>
+      <ng-template [ngIf]="man.sport[4] != null">
+        <b>Sport n°5</b>
+        <ul>
+          <li>
+            <b>{{ man.sport[4].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
     </ul>
   </mat-card-content>
   <mat-card-actions>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { find, map, observable, Observable } from 'rxjs';
 import { Man } from 'src/app/core/models/man';
 import { ManFormData } from 'src/app/core/models/manFormData';
 import { ManFormComponent } from '../../components/man-form/man-form.component';
@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 import { Types } from 'mongoose';
 import ObjectID from 'bson-objectid';
 import { Sport } from 'src/app/core/models/sport';
+import { SportListComponent } from 'src/app/sport/pages/sport-list/sport-list.component';
 @Component({
   selector: 'app-man-details',
   templateUrl: './man-details.component.html',
@@ -18,7 +19,9 @@ import { Sport } from 'src/app/core/models/sport';
 })
 export class ManDetailsComponent implements OnInit {
   man$: Observable<Man>;
-  sports$ = [];
+
+  // sports$: Observable<Man['sport']>;
+
   displayedColumns: string[] = ['name', 'desc'];
   constructor(
     private _manService: ManService,
@@ -33,8 +36,11 @@ export class ManDetailsComponent implements OnInit {
     this._activatedRoute.params.subscribe((params) => {
       this.fetchData(params['id']);
     });
-    console.log(this.sports$);
   }
+
+  // get getListData() {
+  //   return Object.keys(this.man$);
+  // }
 
   fetchData(id: ObjectID) {
     this.man$ = this._manService.getById(id);

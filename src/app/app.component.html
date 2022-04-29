@@ -1,12 +1,25 @@
 <app-header></app-header>
-
-<nav>
-  <ul>
-    <li><a routerLink="/men" routerLinkActive="active">Men</a></li>
-    <li><a routerLink="/sports" routerLinkActive="active">Sports</a></li>
-    <li><a routerLink="/women" routerLinkActive="active">Women</a></li>
-  </ul>
-</nav>
+<mat-toolbar color="primary" class="marge">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>Les copains</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLink="/men"> Hommes </a>
+      <a mat-button routerLink="/women"> Femmes </a>
+      <a mat-button routerLink="/sports"> Sports </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <nav>
+    <ul>
+      <li><a routerLink="/men" routerLinkActive="active">Men</a></li>
+      <li><a routerLink="/sports" routerLinkActive="active">Sports</a></li>
+      <li><a routerLink="/women" routerLinkActive="active">Women</a></li>
+    </ul>
+  </nav> -->
 
 <router-outlet></router-outlet>
 

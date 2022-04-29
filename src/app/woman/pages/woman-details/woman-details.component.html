@@ -1,7 +1,3 @@
-<p>woman-details works!</p>
-
-{{ woman$ | async | json }}
-
 <mat-card class="example-card" *ngIf="woman$ | async; let woman">
   <mat-card-header>
     <mat-card-title>{{ woman.firstName | titlecase }}</mat-card-title>
@@ -10,7 +6,7 @@
 
   <mat-card-content>
     <ul>
-      <li><b>photo :</b> {{ woman.photo }}</li>
+      <li><b>id :</b> {{ woman.id }}</li>
       <li><b>dob :</b> {{ woman.dateOfBirth }}</li>
       <li><b>situation :</b> {{ woman.situation }}</li>
       <ng-template [ngIf]="woman.boyfriend != null">
@@ -29,7 +25,51 @@
         </li>
       </ng-template>
 
-      <li><b>sport :</b> {{ woman.sport }}</li>
+      <br />
+      <ng-template [ngIf]="woman.sport[0] != null">
+        <b>Sport n°1</b>
+        <ul>
+          <li>
+            <b>{{ woman.sport[0].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
+      <br />
+      <ng-template [ngIf]="woman.sport[1] != null">
+        <b>Sport n°2</b>
+        <ul>
+          <li>
+            <b>{{ woman.sport[1].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
+      <br />
+      <ng-template [ngIf]="woman.sport[2] != null">
+        <b>Sport n°3</b>
+        <ul>
+          <li>
+            <b>{{ woman.sport[2].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
+      <br />
+      <ng-template [ngIf]="woman.sport[3] != null">
+        <b>Sport n°4</b>
+        <ul>
+          <li>
+            <b>{{ woman.sport[3].name }}</b>
+          </li>
+        </ul>
+        <br />
+      </ng-template>
+      <ng-template [ngIf]="woman.sport[4] != null">
+        <b>Sport n°5</b>
+        <ul>
+          <li>
+            <b>{{ woman.sport[4].name }}</b>
+          </li>
+        </ul>
+      </ng-template>
     </ul>
   </mat-card-content>
   <mat-card-actions>
