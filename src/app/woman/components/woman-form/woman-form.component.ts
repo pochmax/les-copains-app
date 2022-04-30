@@ -98,11 +98,6 @@ export class WomanFormComponent implements OnInit {
           : new Types.ObjectId(),
         // Validators.required,
       ],
-
-      photo: [
-        this.data.isUpdateMode ? this.data.womanToUpdate.photo : '',
-        // Validators.required,
-      ],
       sport: [
         this.data.isUpdateMode ? this.sports : this.sports,
         // Validators.required,

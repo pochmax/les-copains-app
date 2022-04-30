@@ -6,7 +6,6 @@ export interface Sport {
   id: string;
   name: string;
   desc: string;
-  photo: string;
   men: Man;
   women: Woman;
 }

@@ -108,10 +108,6 @@ export class ManFormComponent implements OnInit {
           : new Types.ObjectId(),
         // Validators.required,
       ],
-      photo: [
-        this.data.isUpdateMode ? this.data.manToUpdate.photo : '',
-        // Validators.required,
-      ],
       sport: [
         this.data.isUpdateMode ? this.sports : this.sports,
         // Validators.required,

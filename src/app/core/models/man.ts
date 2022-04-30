@@ -9,7 +9,6 @@ export interface Man {
   lastName: string;
   situation: string;
   girlfriend: Woman;
-  photo: string;
   dateOfBirth: Date;
   sport: Sport;
 }

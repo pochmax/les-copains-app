@@ -14,13 +14,7 @@ import { ManService } from '../../services/man.service';
 })
 export class ManListComponent implements OnInit {
   men$: Observable<Man[]>;
-  displayedColumns: string[] = [
-    'firstName',
-    'lastName',
-    'photo',
-    'situation',
-    'id',
-  ];
+  displayedColumns: string[] = ['firstName', 'lastName', 'situation', 'id'];
   constructor(
     private _manService: ManService,
     private _router: Router,

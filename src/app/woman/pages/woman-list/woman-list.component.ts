@@ -14,13 +14,7 @@ import { WomanService } from '../../services/woman.service';
 })
 export class WomanListComponent implements OnInit {
   women$: Observable<Woman[]>;
-  displayedColumns: string[] = [
-    'firstName',
-    'lastName',
-    'photo',
-    'situation',
-    'id',
-  ];
+  displayedColumns: string[] = ['firstName', 'lastName', 'situation', 'id'];
   constructor(
     private _womanService: WomanService,
     private _router: Router,
