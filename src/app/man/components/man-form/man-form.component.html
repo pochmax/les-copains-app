@@ -23,7 +23,7 @@
     </mat-form-field>
     <br />
     <mat-form-field appearance="fill">
-      <mat-label>girlfriend</mat-label>
+      <mat-label>girlfriend (à laisser comme cela si celibataire)</mat-label>
       <input matInput formControlName="girlfriend" />
     </mat-form-field>
     <br />
@@ -50,7 +50,7 @@
         </button>
       </mat-chip>
       <input
-        placeholder="New sport..."
+        placeholder="Mettre des id de sport"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         [matChipInputAddOnBlur]="addOnBlur"
